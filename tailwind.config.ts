@@ -10,32 +10,32 @@ const config: Config = {
     extend: {
       colors: {
         background: {
-          primary: "#0a0a0f",
-          secondary: "#12121a",
-          tertiary: "#1a1a24",
+          primary: "#ffffff",
+          secondary: "#f8f8f8",
+          tertiary: "#f0f0f0",
         },
         accent: {
-          primary: "#6366f1",
-          secondary: "#8b5cf6",
+          primary: "#1a1a1a",
+          secondary: "#404040",
         },
         text: {
-          primary: "#f8fafc",
-          secondary: "#94a3b8",
-          muted: "#64748b",
+          primary: "#0a0a0a",
+          secondary: "#525252",
+          muted: "#737373",
         },
-        border: "#27272a",
+        border: "#e5e5e5",
       },
       fontFamily: {
         sans: ["var(--font-inter)"],
         mono: ["var(--font-jetbrains)"],
       },
       backgroundImage: {
-        "gradient-accent": "linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)",
+        "gradient-accent": "linear-gradient(135deg, #1a1a1a 0%, #404040 100%)",
         "gradient-radial": "radial-gradient(ellipse at center, var(--tw-gradient-stops))",
       },
       boxShadow: {
-        card: "0 4px 24px rgba(0, 0, 0, 0.3)",
-        glow: "0 0 20px rgba(99, 102, 241, 0.3)",
+        card: "0 4px 24px rgba(0, 0, 0, 0.08)",
+        glow: "0 0 20px rgba(0, 0, 0, 0.1)",
       },
     },
   },
