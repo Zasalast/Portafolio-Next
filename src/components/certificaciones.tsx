@@ -90,8 +90,8 @@ export default function CertificacionesPage() {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen pt-20 pb-12">
-        <div className="container-custom mx-auto px-6">
+      <main className="section-padding min-h-screen">
+        <div className="container-custom">
           <div className="text-center mb-12">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
               Mis <span className="gradient-text">Certificaciones</span>
@@ -102,15 +102,15 @@ export default function CertificacionesPage() {
           </div>
 
           <div className="flex flex-wrap gap-4 justify-center mb-8">
-            <div className="bg-card border border-border rounded-lg p-4 flex items-center gap-3">
+            <div className="card flex items-center gap-3">
               <div className="w-3 h-3 rounded-full bg-green-500"></div>
               <span className="text-sm">{completedCount} Completadas</span>
             </div>
-            <div className="bg-card border border-border rounded-lg p-4 flex items-center gap-3">
+            <div className="card flex items-center gap-3">
               <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
               <span className="text-sm">{pendingCount} Pendientes</span>
             </div>
-            <div className="bg-card border border-border rounded-lg p-4 flex items-center gap-3">
+            <div className="card flex items-center gap-3">
               <div className="w-3 h-3 rounded-full bg-accent-primary"></div>
               <span className="text-sm">{certifications.length} Total</span>
             </div>
@@ -119,7 +119,7 @@ export default function CertificacionesPage() {
           <div className="mb-8 space-y-4">
             <div className="relative max-w-md mx-auto">
               <svg
-                className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-text-secondary"
+                className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-text-muted"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -136,7 +136,7 @@ export default function CertificacionesPage() {
                 placeholder="Buscar certificacion..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full bg-card border border-border rounded-lg pl-12 pr-4 py-3 text-text-primary placeholder-text-secondary focus:outline-none focus:border-accent-primary transition-colors"
+                className="w-full card pl-12 pr-4 py-3"
               />
             </div>
 
@@ -147,8 +147,8 @@ export default function CertificacionesPage() {
                   onClick={() => setSelectedCategory(category)}
                   className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                     selectedCategory === category
-                      ? "bg-accent-primary text-white"
-                      : "bg-card border border-border text-text-secondary hover:text-text-primary hover:border-accent-primary"
+                      ? "bg-gradient-to-r from-accent-primary to-accent-secondary text-white"
+                      : "card hover:border-accent-primary"
                   }`}
                 >
                   {category}
@@ -157,11 +157,11 @@ export default function CertificacionesPage() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredCertifications.map((cert) => (
               <div
                 key={cert.id}
-                className="bg-card border border-border rounded-xl p-6 hover:border-accent-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-accent-primary/10"
+                className="card card-hover"
               >
                 <div className="flex items-start justify-between mb-3">
                   <span className={`px-3 py-1 rounded-full text-xs font-medium ${
@@ -171,11 +171,11 @@ export default function CertificacionesPage() {
                   }`}>
                     {cert.status === "completed" ? "Completado" : "Pendiente"}
                   </span>
-                  <span className="text-text-secondary text-sm">{cert.date}</span>
+                  <span className="text-text-muted text-sm">{cert.date}</span>
                 </div>
-                <h3 className="text-lg font-semibold text-text-primary mb-2">{cert.name}</h3>
+                <h3 className="text-lg font-semibold mb-2">{cert.name}</h3>
                 <div className="flex items-center justify-between">
-                  <span className="text-text-secondary text-sm">{cert.provider}</span>
+                  <span className="text-text-muted text-sm">{cert.provider}</span>
                   <span className="px-2 py-1 bg-accent-primary/10 text-accent-primary text-xs rounded">
                     {cert.category}
                   </span>

@@ -10,7 +10,7 @@ const navItems = [
   { name: "Sobre Mí", href: "#sobre-mi", isPage: false },
   { name: "Proyectos", href: "#proyectos", isPage: false },
   { name: "Habilidades", href: "#habilidades", isPage: false },
-  { name: "Certificaciones", href: "/certificaciones", isPage: true },
+  { name: "Certificaciones", href: "#certificaciones", isPage: false },
   { name: "Blog", href: "#blog", isPage: false },
   { name: "Servicios", href: "#servicios", isPage: false },
   { name: "Contacto", href: "#contacto", isPage: false },
@@ -18,11 +18,12 @@ const navItems = [
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("inicio");
   const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
   const { theme, setTheme } = useTheme();
+  
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const isCertificacionesPage = pathname === "/certificaciones";
 
@@ -135,6 +136,34 @@ export default function Navbar() {
               </div>
             )}
 
+            <button
+              className="md:hidden p-2 text-text-secondary hover:text-accent-primary"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                {isMobileMenuOpen ? (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                ) : (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                )}
+              </svg>
+            </button>
           </div>
         </div>
 
