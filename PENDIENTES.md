@@ -1,10 +1,10 @@
 # Portfolio Zanoni Alfredo Salas Tobón - Tareas Pendientes
 
-## Estado: EN PROGRESO
+## Estado: CASI COMPLETO
 
 ---
 
-## ✅ COMPLETADOS (20 tareas)
+## ✅ COMPLETADOS (22 tareas)
 
 ### Configuración Inicial
 - [x] Crear SPEC.md con especificaciones del proyecto
@@ -23,6 +23,7 @@
 - [x] Services section
 - [x] Contact section con formulario
 - [x] Footer
+- [x] Certificaciones page
 
 ### Integración de Datos
 - [x] Agregar información profesional (Abstract)
@@ -33,7 +34,8 @@
 
 ### Git
 - [x] Inicializar repositorio Git
-- [x] Crear commit inicial
+- [x] Commit inicial
+- [x] Subir a GitHub
 
 ### Actualizaciones CV
 - [x] Actualizar sección Habilidades con tecnologías del CV
@@ -41,94 +43,38 @@
 
 ---
 
-## 🔲 PENDIENTES (4 tareas)
+## 🔲 PENDIENTES (1 tarea)
 
 ### Pendientes
-- [ ] Agregar certificaciones (ITIL 4, etc.)
-- [ ] Agregar estudios complementarios (cursos Platzi)
-- [ ] Deploy en Vercel
 - [ ] Configurar dominio personalizado (zasalastobon.com)
 
 ---
 
-## 📋 DETALLE DE TAREAS PENDIENTES
+## 📋 DETALLE
 
-### 1. Agregar certificaciones
-Agregar sección con certificaciones:
-- ITIL 4 Fundamentals (pendiente certificación)
-- Certificaciones de Platzi mentionadas en el CV
+### Completado:
+- ✅ Certificaciones: Página con certificaciones de Platzi
+- ✅ Theme Switcher: Cambio de tema claro/oscuro
+- ✅ GitHub: Repositorio conectado
 
-### 2. Agregar estudios complementarios
-Crear sección o componente con cursos de Platzi:
-- Desarrollo de Software y Programación
-- Full Stack Developer
-- Front-End
-- Back-End
-- Pruebas
-- Marketing
-- Habilidades Blandas
-
-### 3. Deploy en Vercel
-```bash
-# Opción 1: CLI
-vercel login
-vercel deploy
-
-# Opción 2: Conectar GitHub en vercel.com
-```
-
-### 4. Configurar dominio
-- Comprar dominio: zasanalastobon.com (o verificar si ya lo tiene)
-- Configurar DNS en Vercel
-- Configurar SSL
+### Pendiente:
+- ⏳ Dominio personalizado
 
 ---
 
-## 🚀 PARA CONTINUAR EL PROYECTO
+## 🚀 COMANDOS ÚTILES
 
 ```bash
-# 1. Entrar al directorio
-cd portfolio
-
-# 2. Instalar dependencias (si es necesario)
-npm install
-
-# 3. Ejecutar en desarrollo
+# Desarrollo
 npm run dev
 
-# 4. Build para producción
+# Build producción
 npm run build
-```
 
-**URL local:** http://localhost:3000
-
----
-
-## 📁 ARCHIVOS DEL PROYECTO
-
-```
-portfolio/
-├── src/
-│   ├── app/
-│   │   ├── layout.tsx      # Layout con SEO
-│   │   ├── page.tsx        # Página principal
-│   │   └── globals.css     # Estilos globales
-│   └── components/
-│       ├── Navbar.tsx     # Navegación
-│       ├── Hero.tsx       # Inicio
-│       ├── About.tsx      # Sobre mí + CV
-│       ├── Projects.tsx  # Proyectos
-│       ├── Skills.tsx     # Habilidades
-│       ├── Blog.tsx      # Blog
-│       ├── Services.tsx  # Servicios
-│       ├── Contact.tsx   # Contacto
-│       └── Footer.tsx    # Pie de página
-├── tailwind.config.ts
-├── package.json
-└── TAREAS.md             # Este archivo
+# Deploy Vercel
+vercel deploy
 ```
 
 ---
 
-*Documento creado: 16/03/2026*
-*Para completar: seguir las tareas pendientes arriba*
+*Actualizado: 16/03/2026*
