@@ -35,13 +35,15 @@
 - [x] Inicializar repositorio Git
 - [x] Crear commit inicial
 
+### Actualizaciones CV
+- [x] Actualizar sección Habilidades con tecnologías del CV
+- [x] Actualizar proyectos con proyectos reales
+
 ---
 
 ## 🔲 PENDIENTES
 
 ### Pendientes
-- [ ] Actualizar sección Habilidades con tecnologías específicas del CV
-- [ ] Actualizar proyectos con proyectos reales
 - [ ] Agregar certificaciones (ITIL 4, etc.)
 - [ ] Agregar estudios complementarios (cursos Platzi)
 - [ ] Deploy en Vercel
@@ -51,17 +53,20 @@
 
 ## 📋 NOTAS
 
-### Tecnologías a agregar en Skills:
-- Frontend: HTML, JavaScript, TypeScript, React.js, React Native, Vue.js, Angular, Next.js
-- Backend: PHP (Laravel, Symfony), Python (Django), Java (Spring Boot), Node.js, Nest.js
-- Base de datos: SQL, MySQL, PostgreSQL, MongoDB
-- Otros: Docker, Postman, Git, GitHub, SCSS, JWT
+### Tecnologías agregadas en Skills:
+- Frontend: React.js, Next.js, TypeScript, Angular, Vue.js, React Native, HTML/CSS, SCSS
+- Backend: PHP (Laravel, Symfony), Python (Django), Java (Spring Boot), Node.js, Nest.js, REST APIs, JWT
+- Bases de Datos: MySQL, PostgreSQL, MongoDB, SQL
+- DevOps: Docker, Git/GitHub, Postman, Linux, Vercel, VS Code
+- Seguridad: ITIL 4, Hardening, Redes, Virtualización (Proxmox), Figma, WordPress
 
-### Deploy Vercel:
-```bash
-vercel login
-vercel deploy
-```
+### Proyectos agregados:
+1. Sistema IoT - Control de Temperatura (React, Node.js, MongoDB, IoT)
+2. Plataforma Web - Estudio y Agencia (Next.js, TypeScript, PostgreSQL, Docker)
+3. API REST - Symfony/Laravel (PHP, Laravel, Symfony, JWT, MySQL)
+4. Aplicación Móvil - React Native (React Native, TypeScript, REST APIs, Redux)
+5. Dashboard Admin - Django + Vue.js (Python, Django, Vue.js, PostgreSQL)
+6. E-commerce - WooCommerce/WordPress (WordPress, WooCommerce, PHP, MySQL)
 
 ---
 

@@ -3,36 +3,61 @@ const skillCategories = [
     name: "Frontend",
     icon: "🎨",
     skills: [
-      { name: "React", level: 95 },
+      { name: "React.js", level: 95 },
       { name: "Next.js", level: 90 },
       { name: "TypeScript", level: 90 },
-      { name: "TailwindCSS", level: 95 },
+      { name: "Angular", level: 85 },
+      { name: "Vue.js", level: 80 },
+      { name: "React Native", level: 75 },
       { name: "HTML/CSS", level: 95 },
-      { name: "JavaScript", level: 95 },
+      { name: "SCSS", level: 85 },
     ],
   },
   {
     name: "Backend",
     icon: "⚙️",
     skills: [
+      { name: "PHP (Laravel, Symfony)", level: 90 },
+      { name: "Python (Django)", level: 80 },
+      { name: "Java (Spring Boot)", level: 75 },
       { name: "Node.js", level: 85 },
-      { name: "Python", level: 80 },
-      { name: "PostgreSQL", level: 80 },
-      { name: "MongoDB", level: 75 },
-      { name: "GraphQL", level: 75 },
+      { name: "Nest.js", level: 80 },
       { name: "REST APIs", level: 90 },
+      { name: "JWT", level: 85 },
     ],
   },
   {
-    name: "Herramientas",
+    name: "Bases de Datos",
+    icon: "🗄️",
+    skills: [
+      { name: "MySQL", level: 90 },
+      { name: "PostgreSQL", level: 85 },
+      { name: "MongoDB", level: 80 },
+      { name: "SQL", level: 90 },
+    ],
+  },
+  {
+    name: "DevOps & Herramientas",
     icon: "🛠️",
     skills: [
-      { name: "Git", level: 90 },
-      { name: "Docker", level: 75 },
-      { name: "AWS", level: 70 },
+      { name: "Docker", level: 80 },
+      { name: "Git/GitHub", level: 95 },
+      { name: "Postman", level: 90 },
+      { name: "Linux (Ubuntu, Debian)", level: 85 },
       { name: "Vercel", level: 90 },
-      { name: "Figma", level: 80 },
       { name: "VS Code", level: 95 },
+    ],
+  },
+  {
+    name: "Seguridad & Otros",
+    icon: "🔒",
+    skills: [
+      { name: "ITIL 4", level: 75 },
+      { name: "Hardening", level: 70 },
+      { name: "Redes", level: 75 },
+      { name: "Virtualización (Proxmox)", level: 70 },
+      { name: "Figma", level: 80 },
+      { name: "WordPress", level: 85 },
     ],
   },
 ];
@@ -50,7 +75,7 @@ export default function Skills() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {skillCategories.map((category, index) => (
             <div key={index} className="card">
               <div className="flex items-center gap-3 mb-6">
@@ -58,7 +83,7 @@ export default function Skills() {
                 <h3 className="text-xl font-semibold">{category.name}</h3>
               </div>
 
-              <div className="space-y-4">
+              <div className="space-y-3">
                 {category.skills.map((skill, skillIndex) => (
                   <div key={skillIndex}>
                     <div className="flex justify-between mb-1">
