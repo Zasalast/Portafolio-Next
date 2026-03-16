@@ -1,28 +1,54 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useTheme, themeOptions } from "./ThemeContext";
 
 const navItems = [
-  { name: "Inicio", href: "#inicio" },
-  { name: "Sobre Mí", href: "#sobre-mi" },
-  { name: "Proyectos", href: "#proyectos" },
-  { name: "Habilidades", href: "#habilidades" },
-  { name: "Certificaciones", href: "/certificaciones" },
-  { name: "Blog", href: "#blog" },
-  { name: "Servicios", href: "#servicios" },
-  { name: "Contacto", href: "#contacto" },
+  { name: "Inicio", href: "#inicio", isPage: false },
+  { name: "Sobre Mí", href: "#sobre-mi", isPage: false },
+  { name: "Proyectos", href: "#proyectos", isPage: false },
+  { name: "Habilidades", href: "#habilidades", isPage: false },
+  { name: "Certificaciones", href: "/certificaciones", isPage: true },
+  { name: "Blog", href: "#blog", isPage: false },
+  { name: "Servicios", href: "#servicios", isPage: false },
+  { name: "Contacto", href: "#contacto", isPage: false },
 ];
+
+const themeColors: Record<string, string> = {
+  dark: "#0a0a0f",
+  light: "#ffffff",
+  ocean: "#0a1628",
+  sunset: "#1a0a0f",
+};
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("inicio");
+  const [mounted, setMounted] = useState(false);
+  const pathname = usePathname();
+  const { theme, setTheme } = useTheme();
+
+  const isCertificacionesPage = pathname === "/certificaciones";
 
   useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (isCertificacionesPage) {
+      setActiveSection("certificaciones");
+      return;
+    }
+
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
       
-      const sections = navItems.map(item => item.href.slice(1));
+      const sections = navItems
+        .filter(item => !item.isPage)
+        .map(item => item.href.slice(1));
       const scrollPosition = window.scrollY + 100;
 
       for (const section of sections) {
@@ -40,85 +66,137 @@ export default function Navbar() {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [isCertificacionesPage]);
+
+  const renderNavLink = (item: typeof navItems[0], mobile = false) => {
+    const isActive = item.isPage 
+      ? pathname === item.href 
+      : activeSection === item.href.slice(1);
+
+    if (item.isPage) {
+      return (
+        <Link
+          key={item.name}
+          href={item.href}
+          className={`text-sm font-medium transition-colors duration-200 hover:text-accent-primary ${
+            isActive
+              ? "text-accent-primary"
+              : "text-text-secondary"
+          }`}
+          onClick={() => mobile && setIsMobileMenuOpen(false)}
+        >
+          {item.name}
+        </Link>
+      );
+    }
+
+    return (
+      <a
+        key={item.name}
+        href={item.href}
+        className={`text-sm font-medium transition-colors duration-200 hover:text-accent-primary ${
+          isActive
+            ? "text-accent-primary"
+            : "text-text-secondary"
+        }`}
+        onClick={() => mobile && setIsMobileMenuOpen(false)}
+      >
+        {item.name}
+      </a>
+    );
+  };
 
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "glass border-b border-border" : "bg-transparent"
+        isScrolled ? "glass border-b border-border" : "bg-background-primary/80"
       }`}
     >
       <div className="container-custom mx-auto px-6">
         <div className="flex items-center justify-between h-16">
-          <a
+          <Link
             href="#inicio"
             className="text-xl font-bold gradient-text"
           >
             Zanoni Alfredo
-          </a>
+          </Link>
 
           <div className="hidden md:flex items-center gap-8">
-            {navItems.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                className={`text-sm font-medium transition-colors duration-200 hover:text-accent-primary ${
-                  activeSection === item.href.slice(1)
-                    ? "text-accent-primary"
-                    : "text-text-secondary"
-                }`}
-              >
-                {item.name}
-              </a>
-            ))}
+            {navItems.map((item) => renderNavLink(item))}
           </div>
 
-          <button
-            className="md:hidden p-2 text-text-secondary hover:text-accent-primary"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
+          <div className="flex items-center gap-2">
+            {mounted && (
+              <div className="hidden sm:flex gap-1">
+                {themeOptions.slice(0, 2).map((option) => (
+                  <button
+                    key={option.value}
+                    onClick={() => setTheme(option.value)}
+                    className={`w-6 h-6 rounded-full border-2 transition-all duration-200 ${
+                      theme === option.value
+                        ? "border-accent-primary scale-110"
+                        : "border-border hover:border-accent-primary/50"
+                    }`}
+                    style={{ backgroundColor: themeColors[option.value] }}
+                    title={option.label}
+                  />
+                ))}
+              </div>
+            )}
+
+            <button
+              className="md:hidden p-2 text-text-secondary hover:text-accent-primary"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label="Toggle menu"
             >
-              {isMobileMenuOpen ? (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              ) : (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              )}
-            </svg>
-          </button>
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                {isMobileMenuOpen ? (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                ) : (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                )}
+              </svg>
+            </button>
+          </div>
         </div>
 
         {isMobileMenuOpen && (
           <div className="md:hidden pb-4">
-            {navItems.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                className={`block py-2 text-sm font-medium transition-colors duration-200 hover:text-accent-primary ${
-                  activeSection === item.href.slice(1)
-                    ? "text-accent-primary"
-                    : "text-text-secondary"
-                }`}
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {item.name}
-              </a>
-            ))}
+            <div className="flex flex-col gap-2 mb-4">
+              {themeOptions.slice(0, 2).map((option) => (
+                <button
+                  key={option.value}
+                  onClick={() => setTheme(option.value)}
+                  className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm ${
+                    theme === option.value
+                      ? "bg-accent-primary/20 text-accent-primary"
+                      : "text-text-secondary hover:text-text-primary"
+                  }`}
+                >
+                  <span
+                    className="w-4 h-4 rounded-full border border-border"
+                    style={{ backgroundColor: themeColors[option.value] }}
+                  />
+                  {option.label}
+                </button>
+              ))}
+            </div>
+            {navItems.map((item) => renderNavLink(item, true))}
           </div>
         )}
       </div>
