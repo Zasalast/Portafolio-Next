@@ -16,13 +16,6 @@ const navItems = [
   { name: "Contacto", href: "#contacto", isPage: false },
 ];
 
-const themeColors: Record<string, string> = {
-  dark: "#0a0a0f",
-  light: "#ffffff",
-  ocean: "#0a1628",
-  sunset: "#1a0a0f",
-};
-
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -127,20 +120,18 @@ export default function Navbar() {
 
           <div className="flex items-center gap-2">
             {mounted && (
-              <div className="hidden sm:flex gap-1">
-                {themeOptions.slice(0, 2).map((option) => (
-                  <button
-                    key={option.value}
-                    onClick={() => setTheme(option.value)}
-                    className={`w-6 h-6 rounded-full border-2 transition-all duration-200 ${
-                      theme === option.value
-                        ? "border-accent-primary scale-110"
-                        : "border-border hover:border-accent-primary/50"
-                    }`}
-                    style={{ backgroundColor: themeColors[option.value] }}
-                    title={option.label}
-                  />
-                ))}
+              <div className="hidden sm:block">
+                <select
+                  value={theme}
+                  onChange={(e) => setTheme(e.target.value as "dark" | "light" | "ocean" | "sunset")}
+                  className="bg-background-secondary border border-border rounded-lg px-3 py-2 text-sm text-text-primary focus:outline-none focus:border-accent-primary cursor-pointer"
+                >
+                  {themeOptions.map((option) => (
+                    <option key={option.value} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))}
+                </select>
               </div>
             )}
 
@@ -177,24 +168,18 @@ export default function Navbar() {
 
         {isMobileMenuOpen && (
           <div className="md:hidden pb-4">
-            <div className="flex flex-col gap-2 mb-4">
-              {themeOptions.slice(0, 2).map((option) => (
-                <button
-                  key={option.value}
-                  onClick={() => setTheme(option.value)}
-                  className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm ${
-                    theme === option.value
-                      ? "bg-accent-primary/20 text-accent-primary"
-                      : "text-text-secondary hover:text-text-primary"
-                  }`}
-                >
-                  <span
-                    className="w-4 h-4 rounded-full border border-border"
-                    style={{ backgroundColor: themeColors[option.value] }}
-                  />
-                  {option.label}
-                </button>
-              ))}
+            <div className="mb-4">
+              <select
+                value={theme}
+                onChange={(e) => setTheme(e.target.value as "dark" | "light" | "ocean" | "sunset")}
+                className="w-full bg-background-secondary border border-border rounded-lg px-3 py-2 text-sm text-text-primary focus:outline-none focus:border-accent-primary cursor-pointer"
+              >
+                {themeOptions.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
             </div>
             {navItems.map((item) => renderNavLink(item, true))}
           </div>
