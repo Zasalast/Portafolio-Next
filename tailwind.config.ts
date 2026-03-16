@@ -10,32 +10,32 @@ const config: Config = {
     extend: {
       colors: {
         background: {
-          primary: "#ffffff",
-          secondary: "#f8f8f8",
-          tertiary: "#f0f0f0",
+          primary: "var(--bg-primary)",
+          secondary: "color-mix(in srgb, var(--bg-primary) 90%, var(--text-primary))",
+          tertiary: "color-mix(in srgb, var(--bg-primary) 80%, var(--text-primary))",
         },
         accent: {
-          primary: "#1a1a1a",
-          secondary: "#404040",
+          primary: "var(--accent-primary)",
+          secondary: "var(--accent-secondary)",
         },
         text: {
-          primary: "#0a0a0a",
-          secondary: "#525252",
-          muted: "#737373",
+          primary: "var(--text-primary)",
+          secondary: "color-mix(in srgb, var(--text-primary) 70%, var(--bg-primary))",
+          muted: "color-mix(in srgb, var(--text-primary) 50%, var(--bg-primary))",
         },
-        border: "#e5e5e5",
+        border: "var(--border-color)",
       },
       fontFamily: {
         sans: ["var(--font-inter)"],
         mono: ["var(--font-jetbrains)"],
       },
       backgroundImage: {
-        "gradient-accent": "linear-gradient(135deg, #1a1a1a 0%, #404040 100%)",
+        "gradient-accent": "linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%)",
         "gradient-radial": "radial-gradient(ellipse at center, var(--tw-gradient-stops))",
       },
       boxShadow: {
-        card: "0 4px 24px rgba(0, 0, 0, 0.08)",
-        glow: "0 0 20px rgba(0, 0, 0, 0.1)",
+        card: "0 4px 24px rgba(0, 0, 0, 0.3)",
+        glow: "0 0 20px color-mix(in srgb, var(--accent-primary) 30%, transparent)",
       },
     },
   },

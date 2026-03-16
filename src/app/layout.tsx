@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { ThemeProvider } from "@/components/ThemeContext";
+import ThemeSwitcher from "@/components/ThemeSwitcher";
 
 export const metadata: Metadata = {
   title: "Zanoni Alfredo Salas Tobón | Portfolio Profesional",
@@ -30,8 +32,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <body className="antialiased bg-background-primary text-text-primary">
-        {children}
+      <body className="antialiased">
+        <ThemeProvider>
+          <ThemeSwitcher />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
