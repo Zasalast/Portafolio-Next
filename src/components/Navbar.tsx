@@ -169,19 +169,6 @@ export default function Navbar() {
 
         {isMobileMenuOpen && (
           <div className="md:hidden pb-4">
-            <div className="mb-4">
-              <select
-                value={theme}
-                onChange={(e) => setTheme(e.target.value as "dark" | "light" | "ocean" | "sunset")}
-                className="w-full bg-background-secondary border border-border rounded-lg px-3 py-2 text-sm text-text-primary focus:outline-none focus:border-accent-primary cursor-pointer"
-              >
-                {themeOptions.map((option) => (
-                  <option key={option.value} value={option.value}>
-                    {option.label}
-                  </option>
-                ))}
-              </select>
-            </div>
             {navItems.map((item) => renderNavLink(item, true))}
           </div>
         )}
