@@ -1,26 +1,23 @@
 "use client";
 
 import { useTheme, themeOptions } from "./ThemeContext";
-import { useState, useEffect } from "react";
+// Removed unused hooks; ThemeSwitcher only reads/writes from ThemeContext
+
+type Theme = "dark" | "light" | "ocean" | "sunset";
 
 export default function ThemeSwitcher() {
   const { theme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) {
-    return null;
-  }
 
   return (
-    <div className="fixed top-4 right-4 z-50">
+    <div className="fixed top-4 right-4 z-[9999]">
       <select
         value={theme}
-        onChange={(e) => setTheme(e.target.value as typeof theme)}
-        className="px-4 py-2 rounded-lg border text-sm font-medium transition-all duration-200 cursor-pointer"
+        onChange={(e) => {
+          const val = e.target.value as Theme;
+          console.log('[ThemeSwitcher] changing theme ->', val);
+          setTheme(val);
+        }}
+        className="px-4 py-2 rounded-lg border text-sm font-medium cursor-pointer"
         style={{
           backgroundColor: "var(--bg-primary)",
           color: "var(--text-primary)",

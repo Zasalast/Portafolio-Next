@@ -67,6 +67,10 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     root.style.setProperty("--background", config.bg);
     root.style.setProperty("--foreground", config.text);
     localStorage.setItem("portfolio-theme", theme);
+    // Debug: log theme changes to help diagnose dropdown issues
+    if (typeof window !== 'undefined') {
+      console.debug('[ThemeContext] theme changed to', theme);
+    }
   }, [theme, mounted]);
 
   return (

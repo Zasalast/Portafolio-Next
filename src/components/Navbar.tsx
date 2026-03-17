@@ -18,16 +18,11 @@ const navItems = [
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("inicio");
-  const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
   
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const isCertificacionesPage = pathname === "/certificaciones";
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   useEffect(() => {
     if (isCertificacionesPage) {
