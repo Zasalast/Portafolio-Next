@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useTheme, themeOptions } from "./ThemeContext";
 
 const navItems = [
   { name: "Inicio", href: "#inicio", isPage: false },
@@ -21,7 +20,6 @@ export default function Navbar() {
   const [activeSection, setActiveSection] = useState("inicio");
   const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
-  const { theme, setTheme } = useTheme();
   
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -120,22 +118,6 @@ export default function Navbar() {
           </div>
 
           <div className="flex items-center gap-2">
-            {mounted && (
-              <div className="hidden sm:block">
-                <select
-                  value={theme}
-                  onChange={(e) => setTheme(e.target.value as "dark" | "light" | "ocean" | "sunset")}
-                  className="bg-background-secondary border border-border rounded-lg px-3 py-2 text-sm text-text-primary focus:outline-none focus:border-accent-primary cursor-pointer"
-                >
-                  {themeOptions.map((option) => (
-                    <option key={option.value} value={option.value}>
-                      {option.label}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            )}
-
             <button
               className="md:hidden p-2 text-text-secondary hover:text-accent-primary"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
